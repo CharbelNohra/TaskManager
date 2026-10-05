@@ -1,5 +1,6 @@
 package com.example.taskmanager
 
+import kotlin.collections.emptyList
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -114,5 +115,32 @@ class TaskTest {
         )
         val result = tasksByPriority(listOf(task, task2, task3))
         assertEquals(listOf(task, task2, task3), result)
+    }
+
+    @Test
+    fun taskTitleReturnsListOfTitles() {
+        val milk = Task(id = 1, title = "Buy milk", description = null, isCompleted = false)
+        val bread = Task(id = 2, title = "Buy bread", description = null, isCompleted = true)
+        val eggs = Task(id = 3, title = "Buy eggs", description = "A dozen", isCompleted = false)
+
+        val result = taskTitles(listOf(milk, bread, eggs))
+
+        assertEquals(listOf("Buy milk", "Buy bread", "Buy eggs"), result)
+    }
+
+    @Test
+    fun taskTitlesOfEmptyListIsEmpty() {
+        assertEquals(emptyList(), taskTitles(emptyList()))
+    }
+
+    @Test
+    fun completedCountReturnsCorrectCount() {
+        val milk = Task(id = 1, title = "Buy milk", description = null, isCompleted = false)
+        val bread = Task(id = 2, title = "Buy bread", description = null, isCompleted = true)
+        val eggs = Task(id = 3, title = "Buy eggs", description = "A dozen", isCompleted = true)
+
+        val result = completedCount(listOf(milk, bread, eggs))
+
+        assertEquals(2, result)
     }
 }

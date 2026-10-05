@@ -17,3 +17,7 @@ fun priorityLabel(priority: Priority): String = when (priority) {
 }
 
 fun tasksByPriority(tasks: List<Task>): List<Task> = tasks.sortedByDescending { it.priority }
+
+fun taskTitles(tasks: List<Task>): List<String> = tasks.map { it.title }
+
+fun completedCount(tasks: List<Task>): Int = tasks.count { it.isCompleted }
